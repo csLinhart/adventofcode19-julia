@@ -1,8 +1,8 @@
 using DelimitedFiles
-input = readdlm("D01.txt", '\t', Int, '\n')
+input = readdlm("D01.txt", '\n', Int)
 
 function CalculateFuel(mass)
-    floor(mass/3) -2
+    floor(mass/3) - 2
 end
 
 println(mapreduce(CalculateFuel, +, input; init=0))
