@@ -1,20 +1,14 @@
 using DelimitedFiles
 input = readdlm("D01.txt", '\t', Int, '\n')
 
-function D1Logic(mass)
+function CalculateFuel(mass)
     floor(mass/3) -2
 end
 
-function D1P1(input)
-    return mapreduce(D1Logic, +, input; init=0)
-end
-println(D1P1(input))
+println(mapreduce(CalculateFuel, +, input; init=0))
 
-function D1P2(input)
-    function D1P22(mass)
-        fuel = D1Logic(mass)
-        return (fuel <= 0) ? 0 : fuel + D1P22(fuel)
-    end
-    return mapreduce(D1P22, +, input; init=0)
+function D1P2(mass)
+    fuel = CalculateFuel(mass)
+    return (fuel <= 0) ? 0 : fuel + D1P2(fuel)
 end
-println(D1P2(input))
+println(mapreduce(D1P2, +, input; init=0))
