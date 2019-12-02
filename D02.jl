@@ -11,11 +11,9 @@ function RunIntcode(input, noun, verb)
     for i=1:4:length(input)
         if input[i]==1
             Process(i, +)
-        end
-        if input[i]==2
+        elseif input[i]==2
             Process(i, *)
-        end
-        if input[i]==99
+        elseif input[i]==99
             break
         end
     end
