@@ -2,7 +2,7 @@ using DelimitedFiles
 inputData = readdlm("D05.txt", ',', Int)
 
 function RunIntcode(input, initInp)
-    global i = 1
+    i = 1
     while true
         code = parse.(Int, split(lpad(string(input[i]), 4, '0'), ""))
         opcode = code[end]
@@ -12,29 +12,29 @@ function RunIntcode(input, initInp)
         end
         if opcode == 1
             input[input[i + 3] + 1] = p1 + p2
-            global i = i + 4
+            i = i + 4
         elseif opcode == 2
             input[input[i + 3] + 1] = p1 * p2
-            global i = i + 4
+            i = i + 4
         elseif opcode == 3
             input[input[i + 1] + 1] = initInp
-            global i = i + 2
+            i = i + 2
         elseif opcode == 4
             if (p1 != 0)
                 println(p1)
                 return
             end
-            global i = i + 2
+            i = i + 2
         elseif opcode == 5
             i = (p1 != 0 ) ? p2 + 1 : i + 3
         elseif opcode == 6
             i = (p1 == 0 ) ? p2 + 1 : i + 3
         elseif opcode == 7
             input[input[i + 3] + 1] = (p1 < p2) ? 1 : 0
-            global i = i + 4
+            i = i + 4
         elseif opcode == 8
             input[input[i + 3] + 1] = (p1 == p2) ? 1 : 0
-            global i = i + 4
+            i = i + 4
         end
     end
 end
