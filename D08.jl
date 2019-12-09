@@ -15,7 +15,7 @@ function showMessage(layers)
     function CheckPixels(layer1, layer2)
         map(x -> x[2]==2 ? layer2[x[1]] : x[2], enumerate(layer1))
     end
-    image = reduce(CheckPixels, ly)
+    image = reduce(CheckPixels, layers)
     display(reshape(image, 25, 6)')
 end
-showMessage(layers)
+showMessage(ly)
