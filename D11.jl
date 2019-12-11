@@ -1,6 +1,6 @@
 using DelimitedFiles, Plots
 plotly()
-inputData = readdlm("C:/Development/AoC19/D11.txt", ',', Int)
+inputData = readdlm("D11.txt", ',', Int)
 
 function RunIntcode(input, startPixel)
     i = 1
