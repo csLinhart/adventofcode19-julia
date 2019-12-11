@@ -62,7 +62,7 @@ function RunIntcode(input, startPixel)
             rb = rb + input[p[1]]
             i = i + 2
         elseif opcode == 99
-            display(heatmap(M, c = :greys))
+            display(heatmap(M[:,end:-1:1], c = :greys))
             return sum(MC)
         end
     end
