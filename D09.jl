@@ -24,7 +24,7 @@ function RunIntcode(input, initInp)
             input[p[3]] = input[p[1]] * input[p[2]]
             i = i + 4
         elseif opcode == 3
-            input[p[1]] = initInp
+            input[p[1]] = popfirst!(initInp)
             i = i + 2
         elseif opcode == 4
             if (p[1] != 0)
@@ -52,5 +52,5 @@ end
 
 largeMemory = Int.(zeros(1, 1100))
 largeMemory[1:length(inputData)] = inputData
-RunIntcode(copy(largeMemory), 1)
-RunIntcode(copy(largeMemory), 2)
+RunIntcode(copy(largeMemory), [1])
+RunIntcode(copy(largeMemory), [2])
