@@ -51,10 +51,8 @@ println(CalculateMaxSignal(inputData, 0))
 
 function CalculateMaxSignalFeedback(inputData, initInp)
     combinations = unique(collect(permutations([5 6 7 8 9], 5)))
-    max = 0
-    for i=1:length(combinations)
+    function CalculateE(comb)
         inpA = inpB = inpC = inpD = inpE = copy(inputData);
-        comb = combinations[i]
         idA = idB = idC = idD = idE = 1;
         (a, idA) = RunIntcode(inpA, [comb[1], initInp], idA)
         (b, idB) = RunIntcode(inpB, [comb[2], a], idB)
@@ -71,10 +69,8 @@ function CalculateMaxSignalFeedback(inputData, initInp)
             (d, idD) = RunIntcode(inpD, [c], idD)
             (e, idE) = RunIntcode(inpE, [d], idE)
         end
-        if e > max
-            max = e
-        end
+        e
     end
-    return max
+    maximum(map(CalculateE, combinations))[1]
 end
 println(CalculateMaxSignalFeedback(inputData, 0))
