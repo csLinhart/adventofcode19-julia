@@ -4,7 +4,7 @@ inputData = readdlm("D17.txt", ',', Int)
 function RunIntcode(input, initInp)
     i = 1
     rb = 0
-    p = Int.(zeros(1, 3))
+    p = zeros(Int, 1, 3)
     k = l = 1
     M = zeros(Int, 55, 49)
     while true
@@ -66,6 +66,6 @@ function RunIntcode(input, initInp)
     end
 end
 
-largeMemory = Int.(zeros(1, 5000))
+largeMemory = zeros(Int, 1, 5000)
 largeMemory[1:length(inputData)] = inputData
 println(RunIntcode(copy(largeMemory), [1]))
