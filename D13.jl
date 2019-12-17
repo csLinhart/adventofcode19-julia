@@ -4,7 +4,7 @@ inputData = readdlm("D13.txt", ',', Int)
 function RunIntcode(input, initInp)
     i = 1
     rb = 0
-    p = Int.(zeros(1, 3))
+    p = zeros(Int, 1, 3)
     result = []
     while true
         code = parse.(Int, split(lpad(string(input[i]), 5, '0'), ""))
@@ -49,7 +49,7 @@ function RunIntcode(input, initInp)
     end
 end
 
-largeMemory = Int.(zeros(1, 5000))
+largeMemory = zeros(Int, 1, 5000)
 largeMemory[1:length(inputData)] = inputData
 output = RunIntcode(copy(largeMemory), 0)
 output = reshape(output, 3, :)'
