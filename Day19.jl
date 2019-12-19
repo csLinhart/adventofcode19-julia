@@ -65,18 +65,14 @@ println(CalculatePart1(inputData))
 function CalculatePart2(inputData)
     largeMemory = zeros(Int, 1, 500)
     largeMemory[1:length(inputData)] = inputData
-    result = 0
-    M = zeros(Int, 1500, 1500)
-    for k = 1:1499
-        for l = 1:1499
-            result = RunIntcode(copy(largeMemory), [k, l])
-            M[k + 1, l + 1] = result
-        end
-    end
-    for k = 1:1399
-        for l = 1:1399
-            if M[k, l] == 1 && M[k + 99, l] == 1 && M[k, l + 99] == 1
-                return (k - 1) * 10000 + (l - 1)
+    for k = 800:1500
+        for l = 800:1500
+            if RunIntcode(copy(largeMemory), [k, l]) == 1
+                if RunIntcode(copy(largeMemory), [k + 99, l]) == 1
+                    if RunIntcode(copy(largeMemory), [k, l + 99]) == 1
+                        return k * 10000 + l
+                    end
+                end
             end
         end
     end
