@@ -1,5 +1,5 @@
-function RunIntcode(inputData, initInp, size, earlyExit = false)
-    input = zeros(Int, 1, size)
+function RunIntcode(inputData, initInp, earlyExit = false)
+    input = zeros(Int, 1, length(inputData) + 100)
     input[1:length(inputData)] = inputData
     i = 1
     rb = 0
