@@ -1,4 +1,6 @@
-function RunIntcode(input, initInp, earlyExit = false)
+function RunIntcode(inputData, initInp, size, earlyExit = false)
+    input = zeros(Int, 1, size)
+    input[1:length(inputData)] = inputData
     i = 1
     rb = 0
     p = zeros(Int, 1, 3)
