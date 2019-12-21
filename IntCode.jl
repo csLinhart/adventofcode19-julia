@@ -1,4 +1,4 @@
-function RunIntcode(input, initInp)
+function RunIntcode(input, initInp, earlyExit = false)
     i = 1
     rb = 0
     p = zeros(Int, 1, 3)
@@ -25,6 +25,9 @@ function RunIntcode(input, initInp)
             input[p[1]] = popfirst!(initInp)
             i = i + 2
         elseif opcode == 4
+            if earlyExit
+                return input[p[1]]
+            end
             push!(output, input[p[1]])
             i = i + 2
         elseif opcode == 5
